@@ -1,0 +1,10 @@
+.DS_Store
+*.swp
+node_modules
+.env
+docker-compose.dev.yml
+.claude/
+# migration data files contain private keys — never commit
+migration/wg0.json
+migration/wg0.conf
+migration/wg-easy.db

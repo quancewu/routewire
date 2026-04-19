@@ -1,0 +1,170 @@
+import { fileURLToPath } from 'node:url';
+
+// https://nuxt.com/docs/api/configuration/nuxt-config
+export default defineNuxtConfig({
+  future: {
+    compatibilityVersion: 4,
+  },
+  compatibilityDate: '2026-02-06',
+  devtools: { enabled: true },
+  modules: [
+    '@nuxtjs/i18n',
+    '@nuxtjs/tailwindcss',
+    '@pinia/nuxt',
+    '@eschricht/nuxt-color-mode',
+    'radix-vue/nuxt',
+    '@vueuse/nuxt',
+    '@nuxt/eslint',
+    '@nuxt/test-utils/module',
+  ],
+  colorMode: {
+    preference: 'system',
+    fallback: 'light',
+    classSuffix: '',
+    cookieName: 'theme',
+  },
+  css: ['~/app.css'],
+  i18n: {
+    // https://i18n.nuxtjs.org/docs/guide/server-side-translations
+    experimental: {
+      localeDetector: './localeDetector.ts',
+    },
+    // https://wg-easy.github.io/wg-easy/latest/contributing/translation/
+    locales: [
+      {
+        code: 'en',
+        language: 'en-US',
+        name: 'English',
+      },
+      {
+        code: 'de',
+        language: 'de-DE',
+        name: 'Deutsch',
+      },
+      {
+        code: 'es',
+        language: 'es-ES',
+        name: 'Español',
+      },
+      {
+        code: 'it',
+        language: 'it-IT',
+        name: 'Italiano',
+      },
+      {
+        code: 'fr',
+        language: 'fr-FR',
+        name: 'Français',
+      },
+      {
+        code: 'ko',
+        language: 'ko-KR',
+        name: '한국어',
+      },
+      {
+        code: 'ru',
+        language: 'ru-RU',
+        name: 'Русский',
+      },
+      {
+        code: 'uk',
+        language: 'uk-UA',
+        name: 'Українська',
+      },
+      {
+        code: 'zh-CN',
+        language: 'zh-CN',
+        name: '简体中文',
+      },
+      {
+        code: 'zh-HK',
+        language: 'zh-HK',
+        name: '繁體中文（香港）',
+      },
+      {
+        code: 'zh-TW',
+        language: 'zh-TW',
+        name: '正體中文 (台灣)',
+      },
+      {
+        code: 'pl',
+        language: 'pl-PL',
+        name: 'Polski',
+      },
+      {
+        code: 'cs',
+        language: 'cs-CZ',
+        name: 'Čeština',
+      },
+      {
+        code: 'pt-BR',
+        language: 'pt-BR',
+        name: 'Português (Brasil)',
+      },
+      {
+        code: 'tr',
+        language: 'tr-TR',
+        name: 'Türkçe',
+      },
+      {
+        code: 'bn',
+        language: 'bn-BD',
+        name: 'বাংলা',
+      },
+      {
+        code: 'id',
+        language: 'id-ID',
+        name: 'Bahasa Indonesia',
+      },
+      {
+        code: 'nl',
+        language: 'nl-NL',
+        name: 'Nederlands',
+      },
+      {
+        code: 'nb',
+        language: 'nb-NO',
+        name: 'Norsk bokmål',
+      },
+      {
+        code: 'bg',
+        language: 'bg-BG',
+        name: 'Български',
+      },
+      {
+        code: 'gl',
+        language: 'gl-ES',
+        name: 'Galego',
+      },
+      {
+        code: 'vi',
+        language: 'vi-VN',
+        name: 'Tiếng Việt',
+      },
+    ],
+    defaultLocale: 'en',
+    vueI18n: './i18n.config.ts',
+    strategy: 'no_prefix',
+    detectBrowserLanguage: {
+      useCookie: true,
+    },
+  },
+  nitro: {
+    esbuild: {
+      options: {
+        // to support big int
+        target: 'node20',
+      },
+    },
+    alias: {
+      '#db': fileURLToPath(new URL('./server/database/', import.meta.url)),
+    },
+    externals: {
+      traceInclude: [fileURLToPath(new URL('./cli/index.ts', import.meta.url))],
+    },
+  },
+  alias: {
+    // for typecheck reasons (https://github.com/nuxt/cli/issues/323)
+    '#db': fileURLToPath(new URL('./server/database/', import.meta.url)),
+  },
+});
