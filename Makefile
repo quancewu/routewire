@@ -1,4 +1,4 @@
-REGISTRY  ?= ghcr.io/your-username
+REGISTRY  ?= ghcr.io/quancewu
 IMAGE     := routewire
 PLATFORM  := linux/amd64
 

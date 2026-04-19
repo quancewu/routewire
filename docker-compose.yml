@@ -20,7 +20,7 @@ services:
       #- INSECURE=false
       #- DISABLE_IPV6=false
 
-    image: ghcr.io/your-username/routewire:latest
+    image: ghcr.io/quancewu/routewire:latest
     container_name: routewire
     volumes:
       - etc_wireguard:/etc/wireguard
