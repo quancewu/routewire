@@ -1,0 +1,30 @@
+volumes:
+  etc_wireguard:
+
+services:
+  routewire:
+    environment:
+      # Required — RouterOS backend
+      # Include protocol to select HTTP or HTTPS:
+      #   http://192.168.1.1   → plain HTTP
+      #   192.168.1.1          → defaults to HTTPS
+      - ROUTEROS_HOST=http://192.168.1.1
+      - ROUTEROS_USER=wireguard-api
+      - ROUTEROS_PASSWORD=changeme
+      - ROUTEROS_INTERFACE=wg0
+      - ROUTEROS_VERIFY_SSL=false
+
+      # Optional — Web UI
+      #- PORT=51821
+      #- HOST=0.0.0.0
+      #- INSECURE=false
+      #- DISABLE_IPV6=false
+
+    image: ghcr.io/your-username/routewire:latest
+    container_name: routewire
+    volumes:
+      - etc_wireguard:/etc/wireguard
+    ports:
+      - "51821:51821/tcp"
+    restart: unless-stopped
+    # No NET_ADMIN, SYS_MODULE, or /dev/net/tun required
